@@ -46,3 +46,5 @@ subplot(1,2,1), imshow(tire_eq);
 subplot(1,2,2), imhist(tire_eq);
 % Question 12 -> report
 % Question 13 -> report
+
+

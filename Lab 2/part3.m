@@ -1,5 +1,5 @@
 f = [0.3*ones(200,100) 0.7*ones(200,100)];
-gaussian = imnoise(f,'gaussian',0.01);
+gaussian = imnoise(f,'gaussian',0,0.01);
 salt_pepper = imnoise(f,'salt & pepper',0.05);
 multiplicative = imnoise(f,'speckle',0.04);
 

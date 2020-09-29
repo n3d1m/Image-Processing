@@ -1,0 +1,17 @@
+lena = imread('lena1.tiff');
+lena_gray = rgb2gray(lena);
+
+%getting the range of intensities
+intensity = double(lena_gray)/255;
+
+%impulse functions
+h1 = (1/6)*ones(1,6);
+h2 = diff(h1);
+h3 = [-1 1];
+
+lena_h1 = conv2(lena_gray,h1);
+lena_h2 = conv2(lena_gray,h2);
+lena_h3 = conv2(lena_gray,h3);
+
+figure
+imshow(

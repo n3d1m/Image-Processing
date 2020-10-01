@@ -6,7 +6,7 @@ intensity = double(lena_gray)/255;
 
 %impulse functions
 h1 = (1/6)*ones(1,6);
-h2 = diff(h1);
+h2 = transpose(h1);
 h3 = [-1 1];
 
 lena_h1 = conv2(intensity,h1);
@@ -18,4 +18,13 @@ subplot(2,2,1),imshow(intensity);
 subplot(2,2,2),imshow(lena_h1);
 subplot(2,2,3),imshow(lena_h2);
 subplot(2,2,4),imshow(lena_h3);
+
+figure
+imshow(lena_h1);
+
+figure
+imshow(lena_h2);
+
+figure
+imshow(lena_h3);
 

@@ -51,6 +51,10 @@ subplot(1,2,1), imshow(lena_denoised);
 subplot(1,2,2), imhist(lena_denoised);
 denoised_psnr4 = PSNR(lena,lena_denoised);
 
+figure;
+imagesc(filterGaus);
+colormap(gray);
+
 % add noise -salt and pepper
 lena_noiseSP = imnoise(lena,'salt & pepper');
 figure;

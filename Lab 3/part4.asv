@@ -1,0 +1,25 @@
+freq_noise = im2double(imread('frequnoisy.tif'));
+F=fftshift(fft2(freq_noise)); %frequency spectrum 
+amplitude = log(abs(F)); %amplitude spectrum
+minValue = min(min(amplitude));
+
+figure
+imshow(amplitude,[])
+peakCoordsX = [65 105 129 153 193];
+peakCoordsY = [65 119 129 139 193];
+
+for i=1:length(peakCoordsX)
+    xIndex = peakCoordsX(i);
+    yIndex = peakCoordsY(i);
+    
+    amplitude(yIndex,xIndex) = 0;
+    F(yIndex,xIndex) = 0;
+end
+
+figure
+imshow(amplitude,[]);
+
+filteredImage = ifft2(fftshift(F));
+
+figure
+imshow(filteredImage, [])

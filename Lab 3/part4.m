@@ -3,6 +3,9 @@ F=fftshift(fft2(freq_noise)); %frequency spectrum
 amplitude = log(abs(F)); %amplitude spectrum
 
 figure
+imshow(freq_noise)
+
+figure
 imshow(amplitude,[])
 
 %coordinates of noise locations were viewed by inspecting the figure

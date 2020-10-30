@@ -43,10 +43,10 @@ filteredImage = real(ifft2(fftshift(filter)));
 figure
 imshow(filteredImage,[]);
 
-gaussFilt = imgaussfilt(lena,60);
-maxValue = max(gaussFilt(:));
+gaussFilt = fspecial('gaussian',[512 512], 60);
+maxValue = max(max(gaussFilt));
 minValue = min(gaussFilt(:));
-normalization = (gaussFilt - minValue) / ( maxValue - minValue );
+normalization = double(gaussFilt) / maxValue;
 
 filter2 = lena_noise_freq.*normalization;
 filteredImage2 = real(ifft2(fftshift(filter2)));
@@ -55,4 +55,6 @@ figure
 imshow(filteredImage2,[]);
 
 [peaksnr,snr] = psnr(filteredImage2,lena);
+
+
 

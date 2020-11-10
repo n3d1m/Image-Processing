@@ -51,11 +51,8 @@ title('Cameraman - Inverse Filter');
 
 % QUESTIONS 4 and 5 - Wiener
 %psd = abs((fftshift(fft2(cman))).^2);
-psd = abs(fft2(cman_blur)).^2;
-nsr = psd ./ 0.002;
-hf = h_freq;
-cman_wnr = deconvwnr(real(fft2(cman_blur_noise)),real(h_freq), 1./nsr);
-cman_wnr = real(ifft2(fft2(cman_blur_noise).*conj(hf)./(abs(hf).^2 + 1/nsr2)));
+nsr = var(cman_blur(:)) / 0.002;
+cman_wnr = deconvwnr(cman_blur_noise,h, 1./nsr);
 
 % PSNR 
 cman_wnr_PSNR = PSNR(cman,cman_wnr);
@@ -74,9 +71,8 @@ subplot(1,3,3);
 imshow(cman_wnr);
 title('Cameraman - Weiner Filter');
 
-% using a different estimate of the SNR
-nsr2 = var(cman_blur(:)) / 0.002;
-cman_wnr2 = deconvwnr(cman_blur_noise,h,1/nsr2);
+% Applying Weiner's equation directly
+cman_wnr2 = real(ifft2(fft2(cman_blur_noise).*conj(h_freq)./(abs(h_freq).^2 + 1/nsr)));
 
 % PSNR 
 cman_wnr_PSNR2 = PSNR(cman,cman_wnr2);
